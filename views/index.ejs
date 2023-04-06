@@ -30,6 +30,7 @@
       display: flex;
       flex: 1;
       margin-top: 50px; /* 为了防止内容被顶部导航栏遮挡，这里设置一个与导航栏相等的上边距 */
+      background-color: rgb(55, 60, 204);
     }
 
     .classify {
@@ -38,7 +39,8 @@
       position: fixed;
       top: 50px; /* 为了防止侧边栏覆盖顶部导航栏，设置一个与导航栏相等的上边距 */
       left: 0;
-      background-color: #f5f5f5;
+      background-color: #897bef;
+      margin-right: 30px;
       overflow-y: auto;
     }
 
@@ -46,7 +48,9 @@
       flex: 1;
       margin-left: 20vw;
       margin-right: 30px;
+      padding-left: 30px;
       position: relative;
+      justify-content: center;
     }
 
     .container {
@@ -63,6 +67,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
+      background-color: #41359c;
     }
 
     .item img {
@@ -81,7 +86,7 @@
     }
 
     .prev {
-      left: -30px;
+      left: 0px;
     }
 
     .next {
@@ -95,10 +100,6 @@
   </style>
 </head>
 <body>
-  <!-- <nav class="navbar">
-    <button id="goBack">&lt;</button>
-    <button id="goForward">&gt;</button>
-  </nav> -->
 
   <!-- 这个里面的路径不受app.use(express.static('public'));影响 -->
   <%- include('../public/partials/navbar') %>
@@ -129,9 +130,9 @@
           img.src = item.photo;
           img.alt = item.name;
           img.addEventListener('click', () => {
-  // 跳转到详情页，将 id 作为 URL 参数传递
-  location.href = `/details/${item.id}`;
-});
+          // 跳转到详情页，将 id 作为 URL 参数传递
+            location.href = `/details/${item.id}`;
+          });
 
           itemDiv.appendChild(img);
   
