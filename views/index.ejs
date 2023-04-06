@@ -95,10 +95,13 @@
   </style>
 </head>
 <body>
-  <nav class="navbar">
+  <!-- <nav class="navbar">
     <button id="goBack">&lt;</button>
     <button id="goForward">&gt;</button>
-  </nav>
+  </nav> -->
+
+  <!-- 这个里面的路径不受app.use(express.static('public'));影响 -->
+  <%- include('../public/partials/navbar') %>
   <div class="main">
     <aside class="classify">左侧类别边栏</aside>
     <div class="wrapper">
@@ -126,9 +129,10 @@
           img.src = item.photo;
           img.alt = item.name;
           img.addEventListener('click', () => {
-            // 跳转到详情页，将id作为URL参数传递
-            location.href = `details.html?id=${item.id}`;
-          });
+  // 跳转到详情页，将 id 作为 URL 参数传递
+  location.href = `/details/${item.id}`;
+});
+
           itemDiv.appendChild(img);
   
           //这个div装 图片下面的游戏名，价格等信息
