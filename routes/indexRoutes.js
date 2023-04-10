@@ -1,14 +1,8 @@
-
-
-
-
-
-
 const express = require("express");
 
 
-  const router = express.Router();
-  const { getItems, getItemsCount, getItemsByLimitAndOffset } = require("../models/itemsModel");
+const router = express.Router();
+const { getItems, getItemsCount, getItemsByLimitAndOffset } = require("../models/itemsModel");
 
 
   

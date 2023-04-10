@@ -18,7 +18,7 @@ connection.connect((err) => {
 
 async function getItems() {
   return new Promise((resolve, reject) => {
-    const query = "SELECT * FROM items where id=1";
+    const query = "SELECT * FROM items ";
     connection.query(query, (err, results) => {
       if (err) {
         reject(err);
@@ -54,11 +54,50 @@ async function getItemsCount() {
       });
     });
   }
-  
 
+  async function getGameCategories() {
+    return new Promise((resolve, reject) => {
+      const query = "SELECT DISTINCT game_type FROM game_id_type";
+      console.log(query);
+      connection.query(query, (err, results) => {
+
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
+  
+async function getGamesByCategory(category) {
+  return new Promise((resolve, reject) => {
+    const query = `
+      SELECT items.* 
+      FROM items 
+      INNER JOIN game_id_type ON items.game_id = game_id_type.game_id
+      WHERE game_id_type.game_type = ?
+    `;
+    connection.query(query, [category], (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}
+  
+  
   module.exports = {
     getItems,
     getItemsCount,
     getItemsByLimitAndOffset,
+    getGameCategories,
+    getGamesByCategory, // 这里导出新添加的函数
   };
+  
+  
+  
+
   

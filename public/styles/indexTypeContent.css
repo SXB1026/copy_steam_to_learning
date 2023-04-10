@@ -1,0 +1,52 @@
+
+  .game-category {
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .category-title {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .view-more {
+    font-size: 18px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .game-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .game-card {
+    width: calc(20% - 10px);
+    max-height: 300px; /* 控制每个游戏卡片的最大高度 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* 超出部分不显示 */
+  }
+  
+  .game-image {
+    width: 100%;
+    object-fit: contain;
+    max-height: 200px;
+  }
+  
+  .game-name {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+

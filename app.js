@@ -2,6 +2,8 @@
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
+const path = require('path');
+  
 const port = 3000;
 // 设置 EJS 作为模板引擎
 app.set('view engine', 'ejs');
@@ -11,6 +13,8 @@ app.use(express.static('public'));
 const indexRoutes = require("./routes/indexRoutes");
 app.use("/", indexRoutes);
 
+const apiRoutes = require("./routes/apiRoutes");
+app.use("/api", apiRoutes);
 
 // 设置 views 文件夹作为模板文件的存放位置
 // app.set('views', path.join(__dirname, 'views'));
