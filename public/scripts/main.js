@@ -49,10 +49,12 @@ async function fetchGameCategories() {
     categoryHeader.appendChild(categoryTitle);
   
     const viewMore = document.createElement("a");
-    viewMore.href = `/game-category/${category.game_id}`; // 请确保此链接指向正确的游戏类型详情页面
+    viewMore.href = `/game-category/all/${category.game_type}`;
+
     viewMore.classList.add("view-more");
     viewMore.textContent = "查看更多";
     categoryHeader.appendChild(viewMore);
+
   
     const gameContainer = document.createElement("div");
     gameContainer.classList.add("game-container");

@@ -77,6 +77,7 @@ async function getGamesByCategory(category) {
       FROM items 
       INNER JOIN game_id_type ON items.game_id = game_id_type.game_id
       WHERE game_id_type.game_type = ?
+      LIMIT 10
     `;
     connection.query(query, [category], (err, results) => {
       if (err) {
@@ -87,6 +88,25 @@ async function getGamesByCategory(category) {
     });
   });
 }
+
+async function getAllGamesByCategory(category) {
+  return new Promise((resolve, reject) => {
+    const query = `
+    SELECT items.* 
+    FROM items 
+    INNER JOIN game_id_type ON items.game_id = game_id_type.game_id
+    WHERE game_id_type.game_type = ?
+    `;
+    connection.query(query, [category], (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}
+
   
   
   module.exports = {
@@ -95,6 +115,7 @@ async function getGamesByCategory(category) {
     getItemsByLimitAndOffset,
     getGameCategories,
     getGamesByCategory, // 这里导出新添加的函数
+    getAllGamesByCategory,
   };
   
   

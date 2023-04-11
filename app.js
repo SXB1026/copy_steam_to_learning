@@ -16,6 +16,10 @@ app.use("/", indexRoutes);
 const apiRoutes = require("./routes/apiRoutes");
 app.use("/api", apiRoutes);
 
+const gameCategoryRoutes = require("./routes/gameCategoryRoutes");
+app.use("/game-category", gameCategoryRoutes);
+
+
 // 设置 views 文件夹作为模板文件的存放位置
 // app.set('views', path.join(__dirname, 'views'));
 
