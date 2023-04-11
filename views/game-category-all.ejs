@@ -1,16 +1,45 @@
+<% 
+  function formatDate(date) {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = ("0" + (d.getMonth() + 1)).slice(-2);
+    const day = ("0" + d.getDate()).slice(-2);
+    return `${year}/${month}/${day}`;
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/game-category-all.css">
   <title>All Games in Category</title>
+
 </head>
-<body>
-  <h1>All Games in Category</h1>
-  <ul>
-    <% games.forEach(game => { %>
-      <li><%= game.game_name %></li>
-    <% }) %>
-  </ul>
-</body>
+<!-- game-category-all.ejs -->
+<body style="margin-top: 50px;">
+    <%- include('../public/partials/navbar') %>
+  
+    <h1>All Games in <%= games[0].game_type %></h1>
+    <div class="game-list">
+      <% games.forEach(game => { %>
+        <a href="/details/<%= game.game_id %>" class="game-link">
+          <div class="game-item">
+            <img class="game-image" src="<%= game.game_photo %>" alt="<%= game.game_name %>">
+            <div class="game-info">
+              <div class="game-name"><%= game.game_name %></div>
+              <div class="game-release-date"><%= formatDate(game.game_release_date) %></div>
+              <div class="game-price"><%= game.game_price %></div>
+            </div>
+            <div class="game-rating">
+              <% for (let i = 0; i < game.game_star; i++) { %>
+                <span class="star">★</span>
+              <% } %>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </body>
+  
 </html>

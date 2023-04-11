@@ -89,16 +89,18 @@ async function getGamesByCategory(category) {
   });
 }
 
+
 async function getAllGamesByCategory(category) {
   return new Promise((resolve, reject) => {
     const query = `
-    SELECT items.* 
-    FROM items 
-    INNER JOIN game_id_type ON items.game_id = game_id_type.game_id
-    WHERE game_id_type.game_type = ?
+      SELECT items.*, game_id_type.game_type
+      FROM items
+      INNER JOIN game_id_type ON items.game_id = game_id_type.game_id
+      WHERE game_id_type.game_type = ?
     `;
     connection.query(query, [category], (err, results) => {
       if (err) {
+        console.error("Error in getAllGamesByCategory query:", err);
         reject(err);
       } else {
         resolve(results);
@@ -106,6 +108,30 @@ async function getAllGamesByCategory(category) {
     });
   });
 }
+
+async function getGameById(gameId) {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT * FROM items WHERE game_id = ?';
+    connection.query(query, [gameId], (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results[0]);
+      }
+    });
+  });
+}
+
+
+async function getGameTypeByGameId(game_id) {
+  try {
+    const [rows] = await pool.query("SELECT game_type FROM game_id_type WHERE game_id = ?", [game_id]);
+    return rows[0].game_type;
+  } catch (err) {
+    throw err;
+  }
+}
+
 
   
   
@@ -115,6 +141,7 @@ async function getAllGamesByCategory(category) {
     getItemsByLimitAndOffset,
     getGameCategories,
     getGamesByCategory, // 这里导出新添加的函数
+    getGameById,
     getAllGamesByCategory,
   };
   
