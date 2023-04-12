@@ -1,10 +1,28 @@
 
 const express = require('express');
+// 中间件
+// const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const app = express();
 const path = require('path');
-  
+const session = require('express-session');
 const port = 3000;
+
+app.use(
+  session({
+    secret: 'your_secret_key', // 在生产环境中使用环境变量
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+
+
+// 使用 body-parser 中间件
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
 // 设置 EJS 作为模板引擎
 app.set('view engine', 'ejs');
 //在写图片路径时可以直接把public视为根目录

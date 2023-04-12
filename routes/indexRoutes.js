@@ -8,14 +8,16 @@ const { getItems, getItemsCount, getItemsByLimitAndOffset } = require("../models
 
   
 router.get("/", async (req, res) => {
-    try {
-      const items = await getItems();
-      res.render("index", { items: items });
-    } catch (err) {
-      console.error("Error querying: " + err.stack);
-      res.status(500).send("Error querying the database");
-    }
-  });
+  try {
+    const items = await getItems();
+    const playerId = req.session.playerId; // 获取playerId
+    res.render("index", { items: items, playerId: playerId }); // 将playerId传递给模板
+  } catch (err) {
+    console.error("Error querying: " + err.stack);
+    res.status(500).send("Error querying the database");
+  }
+});
+
   
   router.get("/count", async (req, res) => {
     try {
@@ -48,6 +50,10 @@ router.get("/", async (req, res) => {
       console.error('Error fetching game details:', err);
       res.status(500).send('Internal Server Error');
     }
+  });
+
+  router.get('/login_register', (req, res) => {
+    res.render('login_register');
   });
   
 

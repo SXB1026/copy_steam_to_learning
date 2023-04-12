@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录/注册</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>登录/注册</h2>
+  <form id="login_register_form">
+    <div>
+      <label for="player_account_number">账号：</label>
+      <input type="text" name="player_account_number" id="player_account_number" required>
+    </div>
+    <div>
+      <label for="player_account_password">密码：</label>
+      <input type="password" name="player_account_password" id="player_account_password" required>
+    </div>
+    <div>
+      <input type="radio" name="action" value="login" id="login" checked>
+      <label for="login">登录</label>
+      <input type="radio" name="action" value="register" id="register">
+      <label for="register">注册</label>
+    </div>
+    <button type="submit">提交</button>
+  </form>
+
+  <script src="/scripts/login_register.js"></script>
+</body>
+</html>
