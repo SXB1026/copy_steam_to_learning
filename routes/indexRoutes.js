@@ -1,4 +1,5 @@
 const express = require("express");
+const itemsModel = require("../models/itemsModel");
 
 
 const router = express.Router();
@@ -35,6 +36,17 @@ router.get("/", async (req, res) => {
       res.json(items);
     } catch (error) {
       res.status(500).send("Error fetching data");
+    }
+  });
+  //进入详情页的路由
+  router.get('/details/:gameId', async (req, res) => {
+    const gameId = req.params.gameId;
+    try {
+      const game = await itemsModel.getGameById(gameId);
+      res.render('details', { game });
+    } catch (err) {
+      console.error('Error fetching game details:', err);
+      res.status(500).send('Internal Server Error');
     }
   });
   

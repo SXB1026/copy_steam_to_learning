@@ -46,6 +46,7 @@ body {
     padding-left: 30px;
     position: relative;
     justify-content: center;
+    margin-bottom: 50px;
   }
 
   .container {
@@ -95,3 +96,17 @@ body {
     flex-direction: row;
     height: 35px;
   }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .left-category-link {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    /* 左侧 侧边框*/
+  }
+  
