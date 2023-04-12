@@ -30,6 +30,14 @@ router.get("/games", async (req, res) => {
   }
 });
 
+router.post('/logout', (req, res) => {
+  // 在这里执行退出登录操作，例如销毁会话或删除cookie
+  req.session.destroy();
+
+  // 发送响应表示成功退出登录
+  res.sendStatus(200);
+});
+
 
 
 router.post('/login_register', async (req, res) => {
