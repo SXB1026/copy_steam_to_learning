@@ -1,15 +1,206 @@
+<% 
+  function formatDate(date) {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = ("0" + (d.getMonth() + 1)).slice(-2);
+    const day = ("0" + d.getDate()).slice(-2);
+    return `${year}/${month}/${day}`;
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/navbar.css">
+  <style>
+    .main_box {
+      margin: 0 13%;
+    }
+
+    .main_box > * {
+      display: block;
+    }
+
+    .show_people {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .photo_intro {
+      width: 60%;
+      /* background-color: orange; */
+    }
+
+    .text_intro {
+      width: 40%;
+    }
+
+    .text_intro > * {
+      display: block;
+    }
+
+    .text_intro img {
+      width: 94%;
+      height: auto;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      max-height: calc(100% - 10px);
+    }
+
+    .text_intro p {
+      font-size:small;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    .price_buy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    .buy_game{
+      margin-right: 20px;
+      font-size: larger;
+    }
+
+    .left > * {
+      display: block;
+    }
+
+    .big_photo {
+    width: 100%;
+    height: 85%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 4px;
+  }
+
+  .small_photo {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .small_photo img {
+    width: 19%;
+    height: auto;
+    cursor: pointer;
+  }
+  </style>
   <title>Details</title>
 </head>
 <body style="margin-top: 50px;">
-    <%- include('../public/partials/navbar') %>
+  <%- include('../public/partials/navbar') %>
 
-  <!-- 在这里可以添加其他需要展示的信息 -->
-  <h1><%= game.game_name %></h1>
-  <img src="<%= game.game_photo %>" alt="<%= game.game_name %>">
+  <div class="main_box">
+    <h2><%= game.game_name %></h2>
+    <div class="show_people">
+      <div class="photo_intro">
+        <div class="big_photo" style="background-image: url('<%= photos[0].photo_path %>');"></div>
+        <div class="small_photo">
+          <% photos.forEach((photo) => { %>
+            <img src="<%= photo.photo_path %>" alt="Small photo">
+          <% }) %>
+        </div>
+      </div>
+      <div class="text_intro">
+        <img src="<%= game.game_photo %>" alt="<%= game.game_name %>">
+        <p><%= game.game_introduction %></p>
+        <div class="price_buy">
+          <div class="left">
+            <h5>发布时间：<%= formatDate(game.game_release_date) %></h5>
+            <h4>价格：<%= game.game_price %></h4>
+          </div>
+          <div class="right">
+            <button class="buy_game">购买</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 获取所有的小图片
+    const smallPhotos = document.querySelectorAll(".small_photo img");
+  
+    // 获取大图片的元素
+    const bigPhoto = document.querySelector(".big_photo");
+  
+    // 为每个小图片添加点击事件
+    smallPhotos.forEach((photo) => {
+      photo.addEventListener("click", () => {
+        // 更新大图片的背景图片为点击的小图片的 src
+        bigPhoto.style.backgroundImage = `url('${photo.src}')`;
+      });
+    });
+  </script>
+  <script>
+    // 获取购买按钮
+    const buyButton = document.querySelector(".buy_game");
+  
+    // 定义一个函数用于创建提示框
+    function createAlert(message, buttons) {
+      const alertBox = document.createElement("div");
+      alertBox.style.position = "fixed";
+      alertBox.style.top = "50%";
+      alertBox.style.left = "50%";
+      alertBox.style.transform = "translate(-50%, -50%)";
+      alertBox.style.padding = "20px";
+      alertBox.style.backgroundColor = "white";
+      alertBox.style.border = "1px solid black";
+      alertBox.style.textAlign = "center";
+      alertBox.style.zIndex = "1000";
+  
+      const messageElem = document.createElement("p");
+      messageElem.innerText = message;
+      alertBox.appendChild(messageElem);
+  
+      buttons.forEach((button) => {
+        alertBox.appendChild(button);
+      });
+  
+      return alertBox;
+    }
+  
+    // 点击购买按钮的事件处理程序
+    buyButton.addEventListener("click", () => {
+      // 检查是否已登录，这里可以根据您的实际情况进行判断
+      const isLoggedIn = !!<%= playerId %>;
+  
+      if (!isLoggedIn) {
+        const okButton = document.createElement("button");
+        okButton.innerText = "确定";
+        okButton.addEventListener("click", () => {
+          document.body.removeChild(alertBox);
+        });
+  
+        const alertBox = createAlert("请先登录", [okButton]);
+        document.body.appendChild(alertBox);
+      } else {
+        const okButton = document.createElement("button");
+        okButton.innerText = "确定";
+        okButton.addEventListener("click", () => {
+          // 在这里可以实现购买游戏的功能
+  
+          // 移除提示框
+          document.body.removeChild(alertBox);
+        });
+  
+        const cancelButton = document.createElement("button");
+        cancelButton.innerText = "取消";
+        cancelButton.addEventListener("click", () => {
+          document.body.removeChild(alertBox);
+        });
+  
+        const alertBox = createAlert("确定将此游戏加入您的库？", [okButton, cancelButton]);
+        document.body.appendChild(alertBox);
+      }
+    });
+  </script>
+  
 </body>
 </html>

@@ -31,4 +31,9 @@
   .dropdown-content a:hover {
     background-color: #f1f1f1;
   }
+  a {
+    text-decoration: none; /* 去掉下划线 */
+    color: #333; /* 设置文本颜色 */
+  }
+  
   

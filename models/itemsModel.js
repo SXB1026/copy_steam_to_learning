@@ -161,6 +161,20 @@ async function getPlayerByAccountNumber(player_account_number) {
   });
 }
 
+// 获取数据库的图片
+async function getGamePhotos(gameId, limit = 5) {
+  return new Promise((resolve, reject) => {
+    const photo_query = 'SELECT * FROM game_id_photo WHERE game_id = ? LIMIT ?';
+    connection.query(photo_query, [gameId, limit], (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}
+
 
 
 
@@ -178,6 +192,7 @@ async function getPlayerByAccountNumber(player_account_number) {
     getGameById,
     getAllGamesByCategory,
     registerUser,
+    getGamePhotos,
     getPlayerByAccountNumber,
   };
   

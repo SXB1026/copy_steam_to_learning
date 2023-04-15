@@ -43,9 +43,11 @@ router.get("/", async (req, res) => {
   //进入详情页的路由
   router.get('/details/:gameId', async (req, res) => {
     const gameId = req.params.gameId;
+    const playerId = req.session.playerId;
     try {
       const game = await itemsModel.getGameById(gameId);
-      res.render('details', { game });
+      const photos = await itemsModel.getGamePhotos(gameId); // 获取游戏图片
+      res.render('details', { game, photos , playerId: playerId}); // 将游戏和图片一起传递给前端模板
     } catch (err) {
       console.error('Error fetching game details:', err);
       res.status(500).send('Internal Server Error');
