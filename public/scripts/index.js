@@ -25,7 +25,7 @@ function updateContent(items) {
     const nameDiv = document.createElement("div");
     nameDiv.classList.add("nameDiv");
 
-    const nameH3 = document.createElement("h3");
+    const nameH3 = document.createElement("h5");
     nameH3.textContent = item.game_name;
     nameDiv.appendChild(nameH3);
 

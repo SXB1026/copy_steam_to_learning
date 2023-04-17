@@ -16,7 +16,12 @@ app.use(
   })
 );
 
-
+app.use((req, res, next) => {
+  if (!req.session.playerId) {
+    req.session.playerId = 0;
+  }
+  next();
+});
 
 // 使用 body-parser 中间件
 app.use(express.urlencoded({ extended: false }));
@@ -38,6 +43,8 @@ const gameCategoryRoutes = require("./routes/gameCategoryRoutes");
 app.use("/game-category", gameCategoryRoutes);
 
 
+
+
 // 设置 views 文件夹作为模板文件的存放位置
 // app.set('views', path.join(__dirname, 'views'));
 
@@ -51,9 +58,11 @@ app.get('/community', (req, res) => {
 });
 app.get('/details/:id', (req, res) => {
   const itemId = req.params.id;
+  const playerId = req.session.playerId || 0;
   // 可以根据 itemId 从数据库中检索项目详细信息，然后将其传递给模板。
-  res.render('details', { id: itemId });
+  res.render('details', { id: itemId, playerId: playerId });
 });
+
 
   
 

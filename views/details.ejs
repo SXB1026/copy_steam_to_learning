@@ -94,7 +94,7 @@
   </style>
   <title>Details</title>
 </head>
-<body style="margin-top: 50px;">
+<body style="margin-top: 50px;" data-player-id="<%= playerId %>">
   <%- include('../public/partials/navbar') %>
 
   <div class="main_box">
@@ -170,7 +170,7 @@
     buyButton.addEventListener("click", () => {
       // 检查是否已登录，这里可以根据您的实际情况进行判断
       const isLoggedIn = !!<%= playerId %>;
-  
+      
       if (!isLoggedIn) {
         const okButton = document.createElement("button");
         okButton.innerText = "确定";

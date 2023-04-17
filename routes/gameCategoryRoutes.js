@@ -11,7 +11,8 @@ router.get("/all/:category", async (req, res) => {
   try {
     const category = req.params.category;
     const games = await getAllGamesByCategory(category);
-    res.render("game-category-all", { games ,category});
+    const playerId = req.session.playerId;
+    res.render("game-category-all", { games ,category,playerId});
   } catch (err) {
     res.status(500).send(err.message);
   }
