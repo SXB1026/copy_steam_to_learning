@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .all_info {
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .personal_photo {
+    flex-basis: 25%;
+    max-width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .personal_photo img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .main_info {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .top_right_info {
+    flex-basis: 25%;
+  }
+  
+  .bottom_info {
+    display: flex;
+    justify-content: space-between;
+    min-height: 1000px;
+  }
+  
+  .left_games_info {
+    flex-basis: 66.67%;
+    margin-right: 5px;
+  }
+  
+  .right_talk_info {
+    flex-basis: 33.33%;
+  }
+  
