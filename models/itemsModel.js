@@ -183,18 +183,18 @@ async function getGamePhotos(gameId, limit = 5) {
 
   
   
-  module.exports = {
-    getItems,
-    getItemsCount,
-    getItemsByLimitAndOffset,
-    getGameCategories,
-    getGamesByCategory, // 这里导出新添加的函数
-    getGameById,
-    getAllGamesByCategory,
-    registerUser,
-    getGamePhotos,
-    getPlayerByAccountNumber,
-  };
+  // module.exports = {
+  //   getItems,
+  //   getItemsCount,
+  //   getItemsByLimitAndOffset,
+  //   getGameCategories,
+  //   getGamesByCategory, // 这里导出新添加的函数
+  //   getGameById,
+  //   getAllGamesByCategory,
+  //   registerUser,
+  //   getGamePhotos,
+  //   getPlayerByAccountNumber,
+  // };
   
   
   
