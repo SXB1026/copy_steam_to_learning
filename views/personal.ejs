@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/personal.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
 </head>
-<body>
+<body style="margin-top: 50px;">
+  <%- include('../public/partials/navbar') %>
     <div class="all_info">
         <div class="top_info">
           <div class="personal_photo"><img src="<%= playerData.player_photo %>" alt=""></div>

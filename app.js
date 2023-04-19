@@ -50,6 +50,11 @@ app.use("/game-category", gameCategoryRoutes);
 const playerRoutes = require('./routes/playerRoutes');
 app.use('/api', playerRoutes);
 
+const storeroomRoutes = require("./routes/storeroomRoutes"); // 引入 storeroomRoutes
+app.use("/", storeroomRoutes); // 使用 storeroomRoutes
+
+const communityRoutes = require("./routes/communityRoutes"); // 引入 communityRoutes
+app.use("/", communityRoutes); // 使用 communityRoutes
 
 
 
@@ -59,13 +64,6 @@ app.use('/api', playerRoutes);
 // app.set('views', path.join(__dirname, 'views'));
 
 
-app.get('/storeroom', (req, res) => {
-  res.render('storeroom');
-});
-
-app.get('/community', (req, res) => {
-  res.render('community');
-});
 app.get('/details/:id', (req, res) => {
   const itemId = req.params.id;
   const playerId = req.session.playerId || 0;

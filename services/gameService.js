@@ -2,7 +2,12 @@ const getPlayerById = require("../dao/getPlayerById");
 const gameDao = require("../dao/getGameById");
 const playerDao = require("../dao/playerDao");
 const playersWithGamesDao = require("../dao/playersWithGamesDao"); // 引入新的DAO模块
+const gamesDao = require('../dao/gamesDao');
 
+async function getGamesByPlayerId(playerId) {
+  const games = await gamesDao.getGamesByPlayerId(playerId);
+  return games;
+}
 async function buyGame(playerId, gameId) {
   const player = await getPlayerById.getPlayerById(playerId);
   const game = await gameDao.getGameById(gameId);
@@ -32,4 +37,5 @@ async function buyGame(playerId, gameId) {
 
 module.exports = {
   buyGame,
+  getGamesByPlayerId
 };

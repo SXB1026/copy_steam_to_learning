@@ -5,16 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/navbar.css">
-
+    <link rel="stylesheet" href="/styles/storeroom.css">
     <title>Document</title>
 </head>
 <!-- 增加上边距防止被导航盖住 -->
-<body style="margin-top: 50px;">
+<body style="margin-top: 50px;" data-player-id="<%= playerId %>">
     <%- include('../public/partials/navbar') %>
-    <h1>s </h1>
-    <h1>s </h1>
-    <h1>s </h1>
-    <h1>s </h1>
-    <p>这里是库页面</p>
+    <div class="storeroom_box">
+        <div class="left_games_list">
+            <% if (loggedIn) { %>
+              <% games.forEach((game, index) => { %>
+                <div class="game_item" onclick="selectGame(<%= JSON.stringify(game) %>)" <% if (index === 0) { %>id="selected_game"<% } %>>
+                    <div class="lr">
+                    <img src="<%= game.game_photo %>" alt="logo" style="height: 20px;">
+                    <span class="text-ellipsis"><%= game.game_name %></span>
+                </div>
+                </div>
+              <% }); %>
+            <% } else { %>
+              登录后显示内容
+            <% } %>
+          </div>
+        <div class="right_game_info">
+            <div class="top_big_photo">
+                <img class="scaled-image" src="" alt="">
+            </div>
+
+            <div class="the_game_content">
+                <div class="button_content transparent-bg">
+                    <button>开始游戏</button>
+                    <div>游戏时长:0分钟</div>
+                </div>
+                <div class="game_info transparent-bg">
+
+                </div>
+                <div class="player_talk transparent-bg">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+ let selectedGame = <%- games.length > 0 ? JSON.stringify(games[0]) : 'null' %>;
+  function selectGame(game) {
+    selectedGame = game;
+    document.getElementById('selected_game').removeAttribute('id');
+    event.target.setAttribute('id', 'selected_game');
+    updateGameInfo();
+  }
+
+  function updateGameInfo() {
+    document.querySelector('.top_big_photo img').src = selectedGame.game_photo;
+    document.querySelector('.game_info').textContent = selectedGame.game_introduction;
+    // 更新背景图片
+    document.querySelector('.the_game_content').style.backgroundImage = `url('${selectedGame.game_photo}')`;
+  }
+  console.log(selectedGame.game_photo);
+  updateGameInfo(); // 初始化时更新游戏信息
+</script>
 </body>
 </html>

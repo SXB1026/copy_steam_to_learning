@@ -7,14 +7,52 @@
     <link rel="stylesheet" href="/styles/navbar.css">
 
     <title>Document</title>
+    <style>
+        .all_talk_box {
+            margin-left: 15%;
+            margin-right: 15%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 0px;
+            background: linear-gradient(to right, blue, gray);
+            }
+
+        .a_talk_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: white;
+            /* padding: 20px; */
+            margin: 10px;
+            height: 250px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+        .name,
+        .game_name,
+        .talk {
+            margin-bottom: 10px;
+            }
+
+    </style>
 </head>
-<body style="margin-top: 50px;" >
+<body style="margin-top: 50px;" data-player-id="<%= playerId %>" >
     <%- include('../public/partials/navbar') %>
-    <h1>s </h1>
-    <h1>s </h1>
-    <h1>s </h1>
-    <h1>s </h1>
-    <h1>s </h1>
-    <p>这里是社区页面</p>
+    <div class="all_talk_box">
+        <% all_talks.forEach(talk => { %>
+            <div class="a_talk_box">
+              <div class="name">
+                <%= talk.player_name %>
+              </div>
+              <div class="game_name">
+                <%= talk.game_name %>
+              </div>
+              <div class="talk">
+                <%= talk.the_talk %>
+              </div>
+            </div>
+          <% }) %>
+          
+    </div>
 </body>
 </html>

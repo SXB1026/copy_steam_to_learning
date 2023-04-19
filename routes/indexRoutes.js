@@ -15,6 +15,12 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get('/nothing', (req, res) => {
+  console.log(req.session.playerId);
+  res.render('nothing',{ playerId: req.session.playerId });
+});
+
+
 router.get("/count", async (req, res) =>{
   try {
     const count = await itemsModel.getItemsCount();
