@@ -28,7 +28,7 @@ body {
   .personal_photo img {
     width: 100%;
     object-fit: cover;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   
   .main_info {

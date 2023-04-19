@@ -124,6 +124,9 @@
     </div>
   </div>
   <script>
+
+    
+
     // 获取所有的小图片
 const smallPhotos = document.querySelectorAll(".small_photo img");
   
@@ -165,40 +168,88 @@ const smallPhotos = document.querySelectorAll(".small_photo img");
         return alertBox;
       }
     
-      // 点击购买按钮的事件处理程序
-      buyButton.addEventListener("click", () => {
-        // 检查是否已登录，这里可以根据您的实际情况进行判断
-        const isLoggedIn = !!<%= playerId %>;
-        
-        if (!isLoggedIn) {
-          const okButton = document.createElement("button");
-          okButton.innerText = "确定";
-          okButton.addEventListener("click", () => {
-            document.body.removeChild(alertBox);
-          });
-    
-          const alertBox = createAlert("请先登录", [okButton]);
-          document.body.appendChild(alertBox);
-        } else {
-          const okButton = document.createElement("button");
-          okButton.innerText = "确定";
-          okButton.addEventListener("click", () => {
-            // 在这里可以实现购买游戏的功能
-            
-            // 移除提示框
-            document.body.removeChild(alertBox);
-          });
-    
-          const cancelButton = document.createElement("button");
-          cancelButton.innerText = "取消";
-          cancelButton.addEventListener("click", () => {
-            document.body.removeChild(alertBox);
-          });
-    
-          const alertBox = createAlert("确定将此游戏加入您的库？", [okButton, cancelButton]);
-          document.body.appendChild(alertBox);
-        }
+      // ...
+// 点击购买按钮的事件处理程序
+console.log("Event listener attached to the button");
+
+buyButton.addEventListener("click", async () => {
+  // 检查是否已登录，这里可以根据您的实际情况进行判断
+  const isLoggedIn = !!<%= playerId %>;
+
+  if (!isLoggedIn) {
+    const okButton = document.createElement("button");
+    okButton.innerText = "确定";
+    okButton.addEventListener("click", () => {
+      document.body.removeChild(alertBox);
+    });
+
+    const alertBox = createAlert("请先登录", [okButton]);
+    document.body.appendChild(alertBox);
+  } else {
+    const okButton = document.createElement("button");
+    okButton.innerText = "确定";
+    okButton.addEventListener("click", async () => {
+      // 调用购买游戏的API
+      const playerId = "<%= playerId %>";
+      const gameId = "<%= game.game_id %>";
+      console.log("playerId:", playerId);
+console.log("gameId:", gameId);
+
+      const response = await fetch("/api/buyGame", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          playerId: playerId,
+          gameId: gameId,
+        }),
       });
+      console.log("Response status:", response.status);
+
+
+      var result = await response.json();
+  
+
+
+      // 根据购买结果显示提示信息
+      if (result.success) {
+        
+        const okButton = document.createElement("button");
+        okButton.innerText = "确定";
+        okButton.addEventListener("click", () => {
+          document.body.removeChild(successAlertBox);
+        });
+
+        const successAlertBox = createAlert("购买成功！", [okButton]);
+        document.body.appendChild(successAlertBox);
+      } else {
+        const okButton = document.createElement("button");
+        okButton.innerText = "确定";
+        okButton.addEventListener("click", () => {
+          document.body.removeChild(failedAlertBox);
+        });
+
+        const failedAlertBox = createAlert("购买失败，原因：" + result.message, [okButton]);
+        document.body.appendChild(failedAlertBox);
+      }
+
+      // 移除购买确认提示框
+      document.body.removeChild(alertBox);
+    });
+
+    const cancelButton = document.createElement("button");
+    cancelButton.innerText = "取消";
+    cancelButton.addEventListener("click", () => {
+      document.body.removeChild(alertBox);
+    });
+
+    const alertBox = createAlert("确定将此游戏加入您的库？", [okButton, cancelButton]);
+    document.body.appendChild(alertBox);
+  }
+});
+// ...
+
   </script>
   
 </body>

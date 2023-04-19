@@ -1,3 +1,4 @@
+const db = require('./dbUtil/dbUtil');
 
 const express = require('express');
 // 中间件
@@ -41,6 +42,15 @@ app.use("/api", apiRoutes);
 
 const gameCategoryRoutes = require("./routes/gameCategoryRoutes");
 app.use("/game-category", gameCategoryRoutes);
+
+
+// const personalRoutes = require("./routes/personalRoutes");
+// app.use("/profile", personalRoutes);
+
+const playerRoutes = require('./routes/playerRoutes');
+app.use('/api', playerRoutes);
+
+
 
 
 

@@ -3,8 +3,21 @@ const itemsModel = require("../dao/getItems");
 const categoryModel = require("../dao/getCategory");
 const loginModel = require("../dao/getLogin");
 const detailModel = require("../dao/getDetail");
+const gameService = require("../services/gameService");
 
 const router = express.Router();
+
+// 购买游戏的API端点
+router.post("/buyGame", async (req, res) => {
+  const { playerId, gameId } = req.body;
+  try {
+    const result = await gameService.buyGame(playerId, gameId);
+    res.json(result);
+  } catch (error) {
+    console.log(error); 
+    res.status(500).json({ message: "购买游戏失败了" });
+  }
+});
 
 router.get("/game-categories", async (req, res) => {
   try {

@@ -1,17 +1,16 @@
-const connection = require('../dbUtil/dbUtil');
-
+const db = require('../dbUtil/dbUtil');
 
 async function getGameCategories() {
   return new Promise((resolve, reject) => {
     const query = "SELECT DISTINCT game_type FROM game_id_type";
     console.log(query);
-    connection.query(query, (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
+    db.query(query)
+      .then(results => {
         resolve(results);
-      }
-    });
+      })
+      .catch(err => {
+        reject(err);
+      });
   });
 }
 
@@ -24,13 +23,13 @@ async function getGamesByCategory(category) {
       WHERE game_id_type.game_type = ?
       LIMIT 10
     `;
-    connection.query(query, [category], (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
+    db.query(query, [category])
+      .then(results => {
         resolve(results);
-      }
-    });
+      })
+      .catch(err => {
+        reject(err);
+      });
   });
 }
 
@@ -42,14 +41,14 @@ async function getAllGamesByCategory(category) {
       INNER JOIN game_id_type ON items.game_id = game_id_type.game_id
       WHERE game_id_type.game_type = ?
     `;
-    connection.query(query, [category], (err, results) => {
-      if (err) {
+    db.query(query, [category])
+      .then(results => {
+        resolve(results);
+      })
+      .catch(err => {
         console.error("Error in getAllGamesByCategory query:", err);
         reject(err);
-      } else {
-        resolve(results);
-      }
-    });
+      });
   });
 }
 

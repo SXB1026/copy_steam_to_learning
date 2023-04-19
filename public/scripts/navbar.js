@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     profileLink.addEventListener('click', (event) => {
       event.preventDefault();
       // 根据您的路由设置，将下面的URL替换为个人资料页面的URL
-      window.location.href = `/profile/${playerId}`;
+      window.location.href = `/api/player/${playerId}`;
     });
   }
   // ...其他代码...

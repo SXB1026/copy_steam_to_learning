@@ -10,19 +10,20 @@
 <body>
     <div class="all_info">
         <div class="top_info">
-            <div class="personal_photo"><img src="" alt=""></div>
-            <div class="main_info">
-                <div class="the_name"></div>
-                <div class="the_intro"></div>
-                <div class="game_coins"></div>
-            </div>
-            <div class="top_right_info"></div>
+          <div class="personal_photo"><img src="<%= playerData.player_photo %>" alt=""></div>
+          <div class="main_info">
+            <div class="the_name"><h2><%= playerData.player_name %></h2></div>
+            <div class="the_intro"><%= playerData.player_introduce %></div>
+            <div class="game_coins"><h4><%= playerData.player_money %></h4></div>
+          </div>
+          <div class="top_right_info"></div>
         </div>
         <div class="bottom_info">
-            <div class="left_games_info"></div>
-            <div class="right_talk_info"></div>
+          <div class="left_games_info"></div>
+          <div class="right_talk_info"></div>
         </div>
-    </div>
+      </div>
+      
     <footer></footer>
 </body>
 </html>
