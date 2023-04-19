@@ -41,14 +41,15 @@
     <div class="all_talk_box">
         <% all_talks.forEach(talk => { %>
             <div class="a_talk_box">
-              <div class="name">
-                <%= talk.player_name %>
-              </div>
+              
               <div class="game_name">
                 <%= talk.game_name %>
               </div>
               <div class="talk">
                 <%= talk.the_talk %>
+              </div>
+              <div class="name">
+                <%= talk.player_name %>
               </div>
             </div>
           <% }) %>
