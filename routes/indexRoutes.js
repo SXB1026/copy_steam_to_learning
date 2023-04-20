@@ -5,6 +5,7 @@ const playersTalkGamesDao = require("../dao/playersTalkGamesDao");
 
 const router = express.Router();
 
+// 页面初始化
 router.get("/", async (req, res) => {
   try {
     const items = await itemsModel.getItems();
