@@ -1,0 +1,209 @@
+body {
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, blue 20%, red 80%);
+    background-size: 200% 200%;
+    background-position: center;
+    animation: gradient-animation 6s infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: center;
+    }
+    50% {
+      background-position: left;
+    }
+    100% {
+      background-position: center;
+    }
+  }
+  
+  
+
+.main_box {
+    margin: 0 13%;
+  }
+
+  .main_box > * {
+    display: block;
+  }
+
+  .show_people {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .photo_intro {
+    width: 60%;
+    /* background-color: orange; */
+  }
+
+  .text_intro {
+    width: 40%;
+  }
+
+  .text_intro > * {
+    display: block;
+  }
+
+  .text_intro img {
+    width: 94%;
+    height: auto;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    max-height: calc(100% - 10px);
+  }
+
+  .text_intro p {
+    font-size:small;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .price_buy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .buy_game{
+    margin-right: 20px;
+    font-size: larger;
+  }
+
+  .left > * {
+    display: block;
+  }
+
+  .big_photo {
+  width: 100%;
+  height: 85%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 4px;
+}
+
+.small_photo {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.small_photo img {
+  width: 19%;
+  height: auto;
+  cursor: pointer;
+}
+
+.end_thing {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    opacity: 0.5;
+  }
+  
+  .left_box {
+    width: 66.66%;
+    display: flex;
+    color: white;
+    background: linear-gradient(to right, rgb(27,40,56), rgb(21,31,44));
+
+    flex-direction: column;
+    padding-top: 20px;
+    margin-right: 2px;
+  }
+  
+  .right_aside {
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .right_aside img {
+    width: 100%;
+    height: auto;
+    opacity: 0.95;
+  }
+  
+  .they_say,
+  .player_say,
+  .i_say {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 5px;
+    word-wrap: break-word;
+    
+  }
+
+  .they_say{
+    font-size: smaller;
+  }
+
+  .player_say,
+  .i_say {
+    margin-top: 20px;
+  }
+
+  .i_say {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .comment_input {
+    width: 80%;
+    height: 60px;
+    resize: none;
+  }
+  
+  .send_comment {
+    width: 15%;
+    height: 60px;
+    cursor: pointer;
+  }
+    
+  
+  .they_say::before,
+  .player_say::before,
+  .i_say::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(to right, white, lightblue);
+  }
+  
+  .they_say::after {
+    content: '关于这款游戏';
+    
+  }
+  
+  .player_say::after {
+    content: '玩家评论';
+  }
+  
+  .i_say::after {
+    content: '发表您的评论';
+  }
+  
+    .they_say::after,
+    .player_say::after,
+    .i_say::after {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+  
+  .they_say::after,
+  .player_say::after,
+  .i_say::after {
+    position: absolute;
+    left: 0;
+    top: -20px;
+  }
+  

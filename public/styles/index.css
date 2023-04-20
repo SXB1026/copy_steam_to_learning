@@ -2,6 +2,9 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    color: aliceblue;
+    background: linear-gradient(to right, rgb(27,40,56), rgb(21,31,44));
+
   }
 
   .navbar {
@@ -23,7 +26,7 @@ body {
     display: flex;
     flex: 1;
     margin-top: 50px; /* 为了防止内容被顶部导航栏遮挡，这里设置一个与导航栏相等的上边距 */
-    background-color: rgb(55, 60, 204);
+    /* background-color: rgb(55, 60, 204); */
   }
 
   .classify {
@@ -32,7 +35,7 @@ body {
     position: fixed;
     top: 50px; /* 为了防止侧边栏覆盖顶部导航栏，设置一个与导航栏相等的上边距 */
     left: 0;
-    background-color: #897bef;
+    background: linear-gradient(to right, rgb(31, 51, 78), rgb(27,40,56));
     margin-right: 30px;
     overflow-y: auto;
   }
@@ -64,7 +67,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: #41359c;
+    background: linear-gradient(to right, rgb(19, 26, 225), rgb(27,40,56));
   }
 
   .item img {
@@ -72,7 +75,9 @@ body {
     height: 70%;
     object-fit: cover;
     cursor: pointer;
+    border: 1px solid rgb(22, 128, 204);
   }
+  
 
   .prev,
   .next {
@@ -85,10 +90,14 @@ body {
 
   .prev {
     left: 0px;
+    background: linear-gradient(to right, rgb(6, 6, 20), rgb(34, 64, 133));
+
   }
 
   .next {
     right: -30px;
+    background: linear-gradient(to right,  rgb(34, 64, 133),rgb(6, 6, 20));
+
   }
 
   .nameDiv{

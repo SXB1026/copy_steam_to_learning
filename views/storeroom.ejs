@@ -47,6 +47,7 @@
     </div>
     <script>
  let selectedGame = <%- games.length > 0 ? JSON.stringify(games[0]) : 'null' %>;
+ console.log(selectedGame);
   function selectGame(game) {
     selectedGame = game;
     document.getElementById('selected_game').removeAttribute('id');
@@ -60,7 +61,7 @@
     // 更新背景图片
     document.querySelector('.the_game_content').style.backgroundImage = `url('${selectedGame.game_photo}')`;
   }
-  console.log(selectedGame.game_photo);
+
   updateGameInfo(); // 初始化时更新游戏信息
 </script>
 </body>

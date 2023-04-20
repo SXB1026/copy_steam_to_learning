@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (response.status === 200) {
             // 退出登录成功，刷新页面以更新导航栏
             window.location.reload();
+            window.location.href = '/nothing';
           } else {
             // 显示错误消息
             console.error('退出登录失败');

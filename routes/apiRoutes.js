@@ -3,9 +3,14 @@ const itemsModel = require("../dao/getItems");
 const categoryModel = require("../dao/getCategory");
 const loginModel = require("../dao/getLogin");
 const detailModel = require("../dao/getDetail");
+const playersTalkGamesDao = require("../dao/playersTalkGamesDao");
 const gameService = require("../services/gameService");
 
+
 const router = express.Router();
+
+
+
 
 // 购买游戏的API端点
 router.post("/buyGame", async (req, res) => {
@@ -16,6 +21,19 @@ router.post("/buyGame", async (req, res) => {
   } catch (error) {
     console.log(error); 
     res.status(500).json({ message: "购买游戏失败了" });
+  }
+});
+
+// 发送评论的API端点
+router.post("/postComment", async (req, res) => {
+  const { playerId, gameId, talk } = req.body;
+  try {
+    const result = await playersTalkGamesDao.addComment(playerId, gameId, talk);
+    console.log(result);
+    res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "发送评论失败" });
   }
 });
 
@@ -41,6 +59,8 @@ router.get("/games", async (req, res) => {
     res.status(500).send("Error querying the database");
   }
 });
+
+
 
 router.post('/logout', (req, res) => {
   req.session.destroy();

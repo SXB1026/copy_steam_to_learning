@@ -13,85 +13,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/navbar.css">
-  <style>
-    .main_box {
-      margin: 0 13%;
-    }
+  <link rel="stylesheet" href="/styles/details.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-    .main_box > * {
-      display: block;
-    }
-
-    .show_people {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .photo_intro {
-      width: 60%;
-      /* background-color: orange; */
-    }
-
-    .text_intro {
-      width: 40%;
-    }
-
-    .text_intro > * {
-      display: block;
-    }
-
-    .text_intro img {
-      width: 94%;
-      height: auto;
-      margin-left: 10px;
-      margin-bottom: 10px;
-      max-height: calc(100% - 10px);
-    }
-
-    .text_intro p {
-      font-size:small;
-      margin-left: 10px;
-      margin-bottom: 10px;
-    }
-
-    .price_buy {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-left: 10px;
-      margin-bottom: 10px;
-    }
-
-    .buy_game{
-      margin-right: 20px;
-      font-size: larger;
-    }
-
-    .left > * {
-      display: block;
-    }
-
-    .big_photo {
-    width: 100%;
-    height: 85%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-bottom: 4px;
-  }
-
-  .small_photo {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .small_photo img {
-    width: 19%;
-    height: auto;
-    cursor: pointer;
-  }
-  </style>
   <title>Details</title>
 </head>
 <body style="margin-top: 50px;" data-player-id="<%= playerId %>">
@@ -120,6 +44,27 @@
             <button class="buy_game">购买</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="end_thing">
+      <div class="left_box">
+        <div class="they_say"><p><%= game.game_about %></p></div>
+        <div class="i_say">
+          <textarea class="comment_input" placeholder="请输入您的评论"></textarea>
+          <button class="send_comment">发送</button>
+        </div>
+        
+        <div class="player_say">
+          <% comments.forEach((comment) => { %>
+            <div class="a_talk">
+              <p><%= comment.player_id %>号玩家: <%= comment.the_talk %></p>
+            </div>
+          <% }) %>
+        </div>
+        
+      </div>  
+      <div class="right_aside">
+        <img src="/images/aside.png" alt="描述">
       </div>
     </div>
   </div>
@@ -248,7 +193,49 @@ console.log("gameId:", gameId);
     document.body.appendChild(alertBox);
   }
 });
-// ...
+
+  //评论功能的实现
+  // 获取发送评论按钮
+const sendCommentButton = document.querySelector(".send_comment");
+
+// 获取评论输入框
+const commentInput = document.querySelector(".comment_input");
+
+// 点击发送评论按钮的事件处理程序
+sendCommentButton.addEventListener("click", async () => {
+  const comment = commentInput.value.trim();
+
+  if (comment === "") {
+    alert("评论不能为空");
+    return;
+  }
+
+  const playerId = "<%= playerId %>";
+  const gameId = "<%= game.game_id %>";
+
+  // 调用发送评论的API
+  const response = await fetch("/api/postComment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      playerId: playerId,
+      gameId: gameId,
+      talk: comment,
+    }),
+  });
+
+  const result = await response.json();
+
+  if (result.success) {
+    alert("评论发送成功");
+    commentInput.value = ""; // 清空输入框
+  } else {
+    alert("评论发送失败，原因：" + result.message);
+  }
+});
+
 
   </script>
   

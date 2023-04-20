@@ -1,6 +1,7 @@
 const express = require("express");
 const itemsModel = require("../dao/getItems");
 const detailModel = require("../dao/getDetail");
+const playersTalkGamesDao = require("../dao/playersTalkGamesDao");
 
 const router = express.Router();
 
@@ -18,6 +19,11 @@ router.get("/", async (req, res) => {
 router.get('/nothing', (req, res) => {
   console.log(req.session.playerId);
   res.render('nothing',{ playerId: req.session.playerId });
+});
+
+router.get('/nothing2', (req, res) => {
+  console.log(req.session.playerId);
+  res.render('nothing2',{ playerId: req.session.playerId });
 });
 
 
@@ -46,10 +52,11 @@ router.get("/data/:index/:limit", async (req, res) => {
 router.get('/details/:gameId', async (req, res) => {
   const gameId = req.params.gameId;
   const playerId = req.session.playerId;
+  const comments = await playersTalkGamesDao.getCommentsByGameId(gameId);
   try {
     const game = await detailModel.getGameById(gameId);
     const photos = await detailModel.getGamePhotos(gameId);
-    res.render('details', { game, photos, playerId: playerId });
+    res.render('details', { game, photos, playerId: playerId,comments:comments });
   } catch (err) {
     console.error('Error fetching game details:', err);
     res.status(500).send('Internal Server Error');
