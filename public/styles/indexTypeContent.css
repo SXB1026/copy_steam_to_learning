@@ -7,12 +7,14 @@ body {
 
 }
   .game-category {
-    background: linear-gradient(to right, rgb(27,40,56), rgb(21,31,44));
+    background: linear-gradient(to right, rgb(33, 51, 69), rgb(21,31,44));
     margin-bottom: 20px;
     padding: 10px;
   }
   
   .category-header {
+    background: linear-gradient(to right, rgb(32, 57, 85), rgb(11, 34, 66));
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,6 +46,15 @@ body {
     align-items: center;
     overflow: hidden; /* 超出部分不显示 */
   }
+
+  .game-card a {
+    border: 3px solid transparent;
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    background-origin: border-box;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* background-clip: content-box, border-box; */
+  }
+  
   
   .game-image {
     width: 100%;
@@ -52,8 +63,13 @@ body {
   }
   
   .game-name {
-    text-align: center;
-    font-size: 18px;
-    margin-top: 10px;
-  }
+  text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+  color: #fff;
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 1px #000;
+}
+
+
 

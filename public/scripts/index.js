@@ -24,18 +24,27 @@ function updateContent(items) {
     //这个div装 图片下面的游戏名，价格等信息
     const nameDiv = document.createElement("div");
     nameDiv.classList.add("nameDiv");
-
+    nameDiv.style.display = "flex";
+    nameDiv.style.width = "100%";
+    nameDiv.style.justifyContent = "center";
+    nameDiv.style.alignItems = "center";
+    
     const nameH3 = document.createElement("h5");
     nameH3.textContent = item.game_name;
+    nameH3.style.width = "50%";
+    nameH3.style.textAlign = "center";
     nameDiv.appendChild(nameH3);
-
-    const priceP = document.createElement("p");
+    
+    const priceP = document.createElement("div");
     priceP.textContent = "价格: " + item.game_price;
+    priceP.style.width = "50%";
+    priceP.style.textAlign = "center";
     nameDiv.appendChild(priceP);
-
+    
     itemDiv.appendChild(nameDiv);
-
+    
     contentDiv.appendChild(itemDiv);
+    
   });
 }
 

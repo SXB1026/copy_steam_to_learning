@@ -4,6 +4,26 @@ body, html {
     margin: 0;
     padding: 0;
   }
+  body {
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, blue 20%, rgb(153, 210, 88) 80%);
+    background-size: 200% 200%;
+    background-position: center;
+    animation: gradient-animation 6s infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: center;
+    }
+    50% {
+      background-position: left;
+    }
+    100% {
+      background-position: center;
+    }
+  }
   
   .storeroom_box {
     display: flex;
@@ -12,14 +32,14 @@ body, html {
   }
   
   .left_games_list {
-    width: 25%;
+    width: 15%;
     height: 100%;
     display: flex;
     flex-direction: column;
   }
   
   .right_game_info {
-    width: 75%;
+    width: 85%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -56,19 +76,37 @@ body, html {
     flex-direction: column;
   }
 
-  .lr{
+  .lr {
     display: flex;
     flex-direction: row;
+    background: linear-gradient(to right, rgb(44, 108, 186), rgb(28, 123, 39));
+    animation: a 3  s infinite;
   }
+  
+  @keyframes a {
+    0% {
+      background: linear-gradient(to right, rgb(211, 51, 11), rgb(18, 215, 41));
+    }
+    50% {
+      background: linear-gradient(to right, rgb(82, 53, 244), rgb(17, 113, 232));
+    }
+    100% {
+      background: linear-gradient(to right, rgb(20, 113, 227), rgb(214, 4, 186));
+    }
+  }
+  
   
   .button_content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 50px;
+
   }
   
   .game_info {
-    
+    height: 300px;
+
   }
   
   .player_talk {
@@ -81,7 +119,7 @@ body, html {
   }
 
   .transparent-bg {
-    background-color: rgba(128, 128, 128, 0.8); /* 灰色，半透明 */
+    background-color: rgba(128, 128, 128, 0.95); /* 灰色，半透明 */
     padding: 10px; /* 添加一些内边距以使内容与边框保持一定距离 */
     margin: 2px 40px;
     border-radius: 5px; /* 可选：为元素添加圆角 */
