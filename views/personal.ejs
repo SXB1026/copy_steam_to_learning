@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="/styles/personal.css">
     <link rel="stylesheet" href="/styles/navbar.css">
 </head>
-<body style="margin-top: 50px;">
+<body style="margin-top: 50px;background: url('images/car.png') ;">
   <%- include('../public/partials/navbar') %>
-    <div class="all_info">
+    <div class="all_info" style="background: url('images/car.png') ;">
         <div class="top_info">
           <div class="personal_photo"><img src="<%= playerData.player_photo %>" alt=""></div>
           <div class="main_info">
             <div class="the_name"><h2><%= playerData.player_name %></h2></div>
             <div class="the_intro"><%= playerData.player_introduce %></div>
-            <div class="game_coins"><h4><%= playerData.player_money %></h4></div>
+            <div class="game_coins"><h4>余额：<%= playerData.player_money %></h4></div>
           </div>
-          <div class="top_right_info"></div>
+          <div class="top_right_info">
+
+          </div>
         </div>
         <div class="bottom_info">
           <div class="left_games_info"></div>

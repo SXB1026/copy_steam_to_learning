@@ -43,13 +43,31 @@ body {
     /* background-color: rgb(55, 60, 204); */
   }
 
+  .image-container {
+    display: inline-block;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to left, rgb(0,19,28), rgb(24, 67, 83));
+    pointer-events: none;
+  }
+  
   .classify {
     width: 20vw;
     height: calc(100vh - 50px); /* 减去顶部导航栏的高度 */
     position: fixed;
     top: 50px; /* 为了防止侧边栏覆盖顶部导航栏，设置一个与导航栏相等的上边距 */
     left: 0;
-    background: linear-gradient(to top, rgb(27,40,56), rgb(24, 67, 83));
+    background: linear-gradient(to right,  rgb(24, 67, 83),rgb(0,19,28));
     margin-right: 30px;
     padding-top: 30px;
     overflow-y: auto;
@@ -59,6 +77,11 @@ body {
     margin-top: 20px;
     margin-left: 50px;
     color: #e6e4e4;
+  }
+  .classify a:hover {
+    background: linear-gradient(to top, rgb(27,40,56), rgb(24, 67, 83));
+    color: chartreuse;
+  
   }
   .right_content{
     margin-left: 20vw
@@ -98,6 +121,11 @@ body {
     object-fit: cover;
     cursor: pointer;
     border: 1px solid rgb(22, 128, 204);
+    transition: transform 0.3s ease;
+  }
+  .item img:hover {
+    transform: translateY(-10px) rotate(0deg) scale(1.1);
+    z-index: 9998;
   }
   
 

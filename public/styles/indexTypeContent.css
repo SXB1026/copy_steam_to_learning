@@ -49,7 +49,7 @@ body {
 
   .game-card a {
     border: 3px solid transparent;
-    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    background-image: linear-gradient(to right,  rgb(15, 19, 81), rgb(33, 51, 69), rgb(11, 34, 66));
     background-origin: border-box;
     background-color: rgba(255, 255, 255, 0.5);
     /* background-clip: content-box, border-box; */
@@ -61,6 +61,17 @@ body {
     object-fit: contain;
     max-height: 200px;
   }
+
+  .game-image {
+    z-index: 9998;
+      
+  }
+
+  .game-image:hover {
+    transform: translateY(20px) rotate(5deg) scale(1.3);
+    z-index: 9998;
+  }
+  
   
   .game-name {
   text-align: center;

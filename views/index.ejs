@@ -19,13 +19,24 @@
 <div class="main">
     <!-- 左侧导航 -->
     <aside class="classify">
-      <img src="/images/Steam.png" alt="" style="width: 300px; height: auto;">
+      <div class="image-container">
+        <img src="/images/Steam.png" alt="" style="width: 300px; height: auto; opacity: 0.3;  ">
+      </div>
+      
+
+
 
     </aside>
     <!-- 右侧的全部内容区 -->
     <div class="right_content">
       <!-- 内容区最上面的新品轮播图 -->
-      <div class="new_content"></div>
+      <div class="new_content" style="margin-bottom: 10px;">
+        <video muted="" autoplay="" playsinline="" poster="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/9d9223993f4b13265de42917/page_bg_schinese.jpg?t=1682015108" class="fullscreen-bg__video" loop="" style="width: 100%;">
+          <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/9d9223993f4b13265de42917/webm_page_bg_schinese.webm?t=1682015108" type="video/webm">
+          <source src="https://cdn.cloudflare.steamstatic.com/steam/clusters/frontpage/9d9223993f4b13265de42917/mp4_page_bg_schinese.mp4?t=1682015108" type="video/mp4">
+        </video>
+      </div>
+      
       <!-- 打折区 -->
         <div class="discount_content">
           <button id="prev" class="prev">&lt;</button>

@@ -35,5 +35,11 @@
     text-decoration: none; /* 去掉下划线 */
     color: #333; /* 设置文本颜色 */
   }
+  a:hover{
+    text-shadow: 0 0 40px rgba(14, 12, 12, 0.99),
+                 0 0 60px rgba(164, 177, 124, 0.99),
+                 0 0 80px rgba(9, 9, 9, 0.99),
+                 0 0 10px rgba(255, 255, 255, 1);
+  }
   
   

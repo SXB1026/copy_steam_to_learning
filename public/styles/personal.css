@@ -1,13 +1,18 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  background-color: blue;
+  background-size: cover;
+  background-position: center;
+}
+
   
   .all_info {
     margin: 0 auto;
     width: 70%;
     display: flex;
     flex-direction: column;
+    background-color: aqua;
   }
   
   .top_info {
@@ -15,6 +20,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+    /* background-color: aqua; */
+
   }
   
   .personal_photo {
